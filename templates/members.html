@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <h1>Members</h1>
+  <p class="sub">완성된 사람보다 성장 중인 사람을 환영합니다.</p>
+</section>
+
+<div class="grid3">
+<div class="card member-row">
+  <div class="avatar">
+    <img src="/static/somyeong.jpg">
+  </div>
+
+  <div class="member-info">
+    <h3>김소명</h3>
+    <p><b>회장</b> · 기획/운영</p>
+    <p class="muted">기획 → 실행 → 회고를 끝까지 책임집니다.</p>
+  </div>
+</div>
+
+
+ <div class="card member-row">
+  <div class="avatar avatar-blank">
+    <span>+</span>
+  </div>
+
+  <div class="member-info">
+    <h3>모집 중</h3>
+    <p><b>부회장</b> · 취업 트랙</p>
+    <p class="muted">함께 루틴을 만들 사람을 기다립니다.</p>
+  </div>
+</div>
+
+<div class="card member-row">
+  <div class="avatar avatar-blank">
+    <span>+</span>
+  </div>
+
+  <div class="member-info">
+    <h3>모집 중</h3>
+    <p><b>프로젝트 리드</b> · 창업 트랙</p>
+    <p class="muted">아이디어를 MVP로 만들 사람을 기다립니다.</p>
+  </div>
+</div>
+
+{% endblock %}

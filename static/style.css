@@ -1,0 +1,175 @@
+:root{
+  --bg:#0b1220;
+  --line:rgba(255,255,255,.10);
+  --text:rgba(255,255,255,.92);
+  --muted:rgba(255,255,255,.68);
+  --blue:#4aa3ff;
+  --blue2:#2b6cb0;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  background: radial-gradient(1200px 600px at 20% 0%, rgba(74,163,255,.20), transparent 60%),
+              radial-gradient(900px 500px at 80% 10%, rgba(43,108,176,.18), transparent 55%),
+              var(--bg);
+  color:var(--text);
+}
+.container{max-width:1040px; margin:0 auto; padding:24px}
+
+.nav{
+  position:sticky; top:0;
+  backdrop-filter: blur(10px);
+  background: rgba(11,18,32,.65);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex; align-items:center; justify-content:space-between; gap:16px}
+.brand{color:var(--text); text-decoration:none; font-weight:900; letter-spacing:.3px}
+.menu a{color:var(--muted); text-decoration:none; margin-left:14px; font-weight:700}
+.menu a:hover{color:var(--text)}
+
+.hero{padding:54px 0}
+.badge{
+  display:inline-block; border:1px solid var(--line);
+  background: rgba(255,255,255,.04);
+  padding:8px 12px; border-radius:999px; color:var(--muted);
+  font-weight:800;
+}
+.hero h1{font-size:56px; margin:14px 0 10px}
+.lead{max-width:720px; color:var(--muted); font-size:18px; line-height:1.6}
+
+.cta-row{display:flex; gap:12px; margin:22px 0 28px}
+.btn{
+  display:inline-block; padding:12px 16px; border-radius:14px;
+  background: linear-gradient(135deg, rgba(74,163,255,.95), rgba(43,108,176,.95));
+  color:#061022; text-decoration:none; font-weight:900;
+}
+.btn.ghost{
+  background: rgba(255,255,255,.06);
+  color:var(--text);
+  border:1px solid var(--line);
+}
+
+.grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+@media (max-width: 860px){ .grid3{grid-template-columns:1fr} .hero h1{font-size:42px} }
+
+.card{
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.04);
+  border-radius:18px;
+  padding:16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+.card h3{margin:0 0 8px}
+.card p{margin:0; color:var(--muted); line-height:1.55}
+
+.footer{border-top:1px solid var(--line); margin-top:30px}
+.small{color:rgba(255,255,255,.55); padding:14px 0}
+.p{color:var(--muted); line-height:1.75; margin:0}
+.muted{color:var(--muted); line-height:1.6}
+.page-head{padding:26px 0 10px}
+.section{padding:18px 0}
+.bullets{margin:0; padding-left:18px; color:var(--muted); line-height:1.7}
+/* Members 카드 전용 스타일 */
+.card h3{
+  font-size:20px;
+  margin-bottom:6px;
+}
+
+.card p{
+  margin:4px 0;
+}
+
+.card{
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+}
+.banner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:22px;
+  border-radius:22px;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(135deg, rgba(74,163,255,.18), rgba(43,108,176,.18)),
+    rgba(255,255,255,.04);
+  box-shadow: 0 14px 34px rgba(0,0,0,.28);
+}
+
+.banner h2{
+  margin:0 0 6px;
+}
+
+.banner p{
+  margin:0;
+  max-width:560px;
+}
+.avatar{
+  width:80px;
+  height:80px;
+  margin:0;
+  border-radius:50%;
+  overflow:hidden;
+  border:1px solid var(--line);
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+}
+.member-card{ text-align:center; }
+/* Members - 좌우 정렬 (컴팩트 버전) */
+.member-row{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  justify-content:flex-start; /* 왼쪽 정렬 */
+  text-align:left;            /* 글 왼쪽 정렬 */
+}
+
+.member-info h3{
+  margin:0;
+  font-size:20px;
+}
+
+.member-info p{
+  margin:4px 0 0;
+  line-height:1.5;
+}
+/* 모집중(사진 없는) 아바타 */
+.avatar-blank{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.75);
+  font-weight:900;
+  font-size:22px;
+}
+
+/* 모바일: 멤버 카드 세로로 쌓이게 */
+@media (max-width: 560px){
+  .member-row{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
+  }
+
+  .avatar{
+    width:72px;
+    height:72px;
+  }
+}
+
+

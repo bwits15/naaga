@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NAAGA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="/">NAAGA</a>
+      <nav class="menu">
+        <a href="/about">About</a>
+        <a href="/activities">Activities</a>
+        <a href="/vision">Vision</a>
+        <a href="/members">Members</a>
+        <a href="/recruit">Recruit</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="container small">
+      Not Afraid, Always Go Ahead · NAAGA
+    </div>
+  </footer>
+</body>
+</html>
