@@ -32,13 +32,76 @@
 </section>
 
 <script>
-  // ✅ 여기 일정만 바꾸면 돼요 (예시)
-  // 키 형식: "YYYY-MM-DD"
-  const EVENTS = {
-    "2026-01-05": ["정기모임 19:00 (회의실)"],
-    "2026-01-12": ["프로젝트 회의 18:30"],
-    "2026-01-20": ["아이디어톤 준비 스터디 17:00"]
-  };
+  // 이제 일정은 static/events.json에서 불러옴
+  let EVENTS = {};
+
+  let current = new Date();
+  current.setDate(1);
+
+  const monthTitle = document.getElementById("monthTitle");
+  const grid = document.getElementById("calendarGrid");
+  const eventText = document.getElementById("eventText");
+
+  function pad(n){ return String(n).padStart(2,"0"); }
+
+  function render(){
+    const y = current.getFullYear();
+    const m = current.getMonth();
+    monthTitle.textContent = `${y}.${pad(m+1)}`;
+
+    grid.innerHTML = "";
+
+    const firstDay = new Date(y, m, 1);
+    const startWeekday = firstDay.getDay();
+    const lastDate = new Date(y, m+1, 0).getDate();
+
+    for(let i=0;i<startWeekday;i++){
+      const empty = document.createElement("div");
+      empty.className = "cal-cell cal-empty";
+      grid.appendChild(empty);
+    }
+
+    for(let d=1; d<=lastDate; d++){
+      const cell = document.createElement("button");
+      cell.type = "button";
+      cell.className = "cal-cell";
+      const key = `${y}-${pad(m+1)}-${pad(d)}`;
+      cell.innerHTML = `<span class="cal-date">${d}</span>`;
+
+      if (EVENTS[key]){
+        cell.classList.add("cal-has");
+        cell.innerHTML += `<span class="cal-dot"></span>`;
+      }
+
+      cell.addEventListener("click", () => {
+        const list = EVENTS[key];
+        if(!list){
+          eventText.textContent = `${key} 일정 없음`;
+          return;
+        }
+        eventText.innerHTML = `<b>${key}</b><br>` + list.map(x=>`• ${x}`).join("<br>");
+      });
+
+      grid.appendChild(cell);
+    }
+  }
+
+  document.getElementById("prevBtn").addEventListener("click", () => {
+    current.setMonth(current.getMonth()-1);
+    render();
+  });
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    current.setMonth(current.getMonth()+1);
+    render();
+  });
+
+  // ✅ JSON 불러온 뒤 render
+  fetch("/static/events.json")
+    .then(res => res.json())
+    .then(data => { EVENTS = data; render(); })
+    .catch(() => { EVENTS = {}; render(); });
+</script>
+
 
   let current = new Date(); // 오늘 기준
   current.setDate(1); // 해당 달 1일로 고정
