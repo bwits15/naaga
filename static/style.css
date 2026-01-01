@@ -236,4 +236,10 @@ body{
 .cal-legend{ margin-top:12px; }
 .cal-events{ margin-top:14px; }
 
+/* 오늘 날짜 강조 */
+.cal-today {
+  border: 2px solid var(--blue);
+  background: rgba(74,163,255,0.12);
+  border-radius: 12px;
+}
 

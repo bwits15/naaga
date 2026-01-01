@@ -9,7 +9,7 @@
 <section class="card calendar-wrap">
   <div class="cal-top">
     <button class="cal-btn" id="prevBtn" type="button">←</button>
-    <div class="cal-title" id="monthTitle">2026.01</div>
+    <div class="cal-title" id="monthTitle">----</div>
     <button class="cal-btn" id="nextBtn" type="button">→</button>
   </div>
 
@@ -26,85 +26,17 @@
   <div class="cal-events" id="eventBox">
     <div class="callout">
       <div class="callout-title">선택한 날짜</div>
-      <div class="callout-body muted" id="eventText">날짜를 클릭해보세요 </div>
+      <div class="callout-body muted" id="eventText">날짜를 클릭해보세요</div>
     </div>
   </div>
 </section>
 
 <script>
-  // 이제 일정은 static/events.json에서 불러옴
+  // ✅ 일정은 static/events.json에서 불러옵니다
   let EVENTS = {};
 
   let current = new Date();
   current.setDate(1);
-
-  const monthTitle = document.getElementById("monthTitle");
-  const grid = document.getElementById("calendarGrid");
-  const eventText = document.getElementById("eventText");
-
-  function pad(n){ return String(n).padStart(2,"0"); }
-
-  function render(){
-    const y = current.getFullYear();
-    const m = current.getMonth();
-    monthTitle.textContent = `${y}.${pad(m+1)}`;
-
-    grid.innerHTML = "";
-
-    const firstDay = new Date(y, m, 1);
-    const startWeekday = firstDay.getDay();
-    const lastDate = new Date(y, m+1, 0).getDate();
-
-    for(let i=0;i<startWeekday;i++){
-      const empty = document.createElement("div");
-      empty.className = "cal-cell cal-empty";
-      grid.appendChild(empty);
-    }
-
-    for(let d=1; d<=lastDate; d++){
-      const cell = document.createElement("button");
-      cell.type = "button";
-      cell.className = "cal-cell";
-      const key = `${y}-${pad(m+1)}-${pad(d)}`;
-      cell.innerHTML = `<span class="cal-date">${d}</span>`;
-
-      if (EVENTS[key]){
-        cell.classList.add("cal-has");
-        cell.innerHTML += `<span class="cal-dot"></span>`;
-      }
-
-      cell.addEventListener("click", () => {
-        const list = EVENTS[key];
-        if(!list){
-          eventText.textContent = `${key} 일정 없음`;
-          return;
-        }
-        eventText.innerHTML = `<b>${key}</b><br>` + list.map(x=>`• ${x}`).join("<br>");
-      });
-
-      grid.appendChild(cell);
-    }
-  }
-
-  document.getElementById("prevBtn").addEventListener("click", () => {
-    current.setMonth(current.getMonth()-1);
-    render();
-  });
-  document.getElementById("nextBtn").addEventListener("click", () => {
-    current.setMonth(current.getMonth()+1);
-    render();
-  });
-
-  // ✅ JSON 불러온 뒤 render
-  fetch("/static/events.json")
-    .then(res => res.json())
-    .then(data => { EVENTS = data; render(); })
-    .catch(() => { EVENTS = {}; render(); });
-</script>
-
-
-  let current = new Date(); // 오늘 기준
-  current.setDate(1); // 해당 달 1일로 고정
 
   const monthTitle = document.getElementById("monthTitle");
   const grid = document.getElementById("calendarGrid");
@@ -124,7 +56,7 @@
     const lastDate = new Date(y, m+1, 0).getDate();
 
     // 앞쪽 빈칸
-    for(let i=0;i<startWeekday;i++){
+    for(let i=0; i<startWeekday; i++){
       const empty = document.createElement("div");
       empty.className = "cal-cell cal-empty";
       grid.appendChild(empty);
@@ -136,7 +68,18 @@
       cell.type = "button";
       cell.className = "cal-cell";
       const key = `${y}-${pad(m+1)}-${pad(d)}`;
+
       cell.innerHTML = `<span class="cal-date">${d}</span>`;
+// ✅ 오늘 날짜면 강조
+const today = new Date();
+if (
+  y === today.getFullYear() &&
+  m === today.getMonth() &&
+  d === today.getDate()
+) {
+  cell.classList.add("cal-today");
+}
+
 
       if (EVENTS[key]){
         cell.classList.add("cal-has");
@@ -149,7 +92,7 @@
           eventText.textContent = `${key} 일정 없음`;
           return;
         }
-        eventText.innerHTML = `<b>${key}</b><br>` + list.map(x=>`• ${x}`).join("<br>");
+        eventText.innerHTML = `<b>${key}</b><br>` + list.map(x => `• ${x}`).join("<br>");
       });
 
       grid.appendChild(cell);
@@ -157,15 +100,20 @@
   }
 
   document.getElementById("prevBtn").addEventListener("click", () => {
-    current.setMonth(current.getMonth()-1);
-    render();
-  });
-  document.getElementById("nextBtn").addEventListener("click", () => {
-    current.setMonth(current.getMonth()+1);
+    current.setMonth(current.getMonth() - 1);
     render();
   });
 
-  render();
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    current.setMonth(current.getMonth() + 1);
+    render();
+  });
+
+  // ✅ JSON 불러온 뒤 render
+  fetch("/static/events.json")
+    .then(res => res.json())
+    .then(data => { EVENTS = data || {}; render(); })
+    .catch(() => { EVENTS = {}; render(); });
 </script>
 
 {% endblock %}
