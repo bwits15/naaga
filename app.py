@@ -10,6 +10,10 @@ def home():
 def about():
     return render_template("about.html")
 
+@app.route("/calendar")
+def calendar():
+    return render_template("calendar.html", title="Calendar")
+
 @app.route("/activities")
 def activities():
     return render_template("activities.html")

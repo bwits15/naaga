@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="page-head">
+  <h1>Calendar</h1>
+  <p class="sub">NAAGA 일정 — 월별로 확인하세요.</p>
+</section>
+
+<section class="card calendar-wrap">
+  <div class="cal-top">
+    <button class="cal-btn" id="prevBtn" type="button">←</button>
+    <div class="cal-title" id="monthTitle">2026.01</div>
+    <button class="cal-btn" id="nextBtn" type="button">→</button>
+  </div>
+
+  <div class="cal-grid cal-week">
+    <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+  </div>
+
+  <div class="cal-grid" id="calendarGrid"></div>
+
+  <div class="cal-legend muted">
+    • 날짜를 클릭하면 그날 일정이 아래에 표시돼요.
+  </div>
+
+  <div class="cal-events" id="eventBox">
+    <div class="callout">
+      <div class="callout-title">선택한 날짜</div>
+      <div class="callout-body muted" id="eventText">날짜를 클릭해보세요 </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // ✅ 여기 일정만 바꾸면 돼요 (예시)
+  // 키 형식: "YYYY-MM-DD"
+  const EVENTS = {
+    "2026-01-05": ["정기모임 19:00 (회의실)"],
+    "2026-01-12": ["프로젝트 회의 18:30"],
+    "2026-01-20": ["아이디어톤 준비 스터디 17:00"]
+  };
+
+  let current = new Date(); // 오늘 기준
+  current.setDate(1); // 해당 달 1일로 고정
+
+  const monthTitle = document.getElementById("monthTitle");
+  const grid = document.getElementById("calendarGrid");
+  const eventText = document.getElementById("eventText");
+
+  function pad(n){ return String(n).padStart(2,"0"); }
+
+  function render(){
+    const y = current.getFullYear();
+    const m = current.getMonth(); // 0~11
+    monthTitle.textContent = `${y}.${pad(m+1)}`;
+
+    grid.innerHTML = "";
+
+    const firstDay = new Date(y, m, 1);
+    const startWeekday = firstDay.getDay(); // 0=Sun
+    const lastDate = new Date(y, m+1, 0).getDate();
+
+    // 앞쪽 빈칸
+    for(let i=0;i<startWeekday;i++){
+      const empty = document.createElement("div");
+      empty.className = "cal-cell cal-empty";
+      grid.appendChild(empty);
+    }
+
+    // 날짜 채우기
+    for(let d=1; d<=lastDate; d++){
+      const cell = document.createElement("button");
+      cell.type = "button";
+      cell.className = "cal-cell";
+      const key = `${y}-${pad(m+1)}-${pad(d)}`;
+      cell.innerHTML = `<span class="cal-date">${d}</span>`;
+
+      if (EVENTS[key]){
+        cell.classList.add("cal-has");
+        cell.innerHTML += `<span class="cal-dot"></span>`;
+      }
+
+      cell.addEventListener("click", () => {
+        const list = EVENTS[key];
+        if(!list){
+          eventText.textContent = `${key} 일정 없음`;
+          return;
+        }
+        eventText.innerHTML = `<b>${key}</b><br>` + list.map(x=>`• ${x}`).join("<br>");
+      });
+
+      grid.appendChild(cell);
+    }
+  }
+
+  document.getElementById("prevBtn").addEventListener("click", () => {
+    current.setMonth(current.getMonth()-1);
+    render();
+  });
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    current.setMonth(current.getMonth()+1);
+    render();
+  });
+
+  render();
+</script>
+
+{% endblock %}
