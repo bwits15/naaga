@@ -242,4 +242,401 @@ body{
   background: rgba(74,163,255,0.12);
   border-radius: 12px;
 }
+.members-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:25px;
+margin-top:40px;
+}
 
+.member-card{
+background:#ffffff;
+border-radius:14px;
+padding:25px;
+text-align:center;
+box-shadow:0 6px 18px rgba(0,0,0,0.08);
+transition:transform 0.2s ease;
+}
+
+.member-card:hover{
+transform:translateY(-5px);
+}
+
+.member-photo{
+width:100px;
+height:100px;
+border-radius:50%;
+background:#e5e7eb;
+margin:0 auto 15px auto;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:14px;
+color:#6b7280;
+}
+
+.member-card h3{
+margin:5px 0;
+}
+
+.role{
+color:#2563eb;
+font-weight:600;
+}
+
+.members-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:24px;
+  margin-top:30px;
+}
+
+.member-card{
+  background:#ffffff;
+  border-radius:16px;
+  padding:24px;
+  text-align:center;
+  box-shadow:0 8px 24px rgba(0,0,0,0.08);
+  transition:transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.member-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 28px rgba(0,0,0,0.12);
+}
+
+.member-photo{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  background:#e5e7eb;
+  margin:0 auto 16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#6b7280;
+  font-size:14px;
+  font-weight:600;
+}
+
+.member-card h3{
+  margin:8px 0 6px;
+  font-size:22px;
+}
+
+.role{
+  margin:0;
+  color:#2563eb;
+  font-weight:700;
+}
+.members-subtitle{
+  margin-top: 8px;
+  margin-bottom: 28px;
+  color: rgba(255,255,255,0.75);
+  font-size: 16px;
+}
+
+.members-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.member-card{
+  background: rgba(255,255,255,0.96);
+  border-radius: 24px;
+  padding: 28px 22px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.14);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.member-card:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.18);
+}
+
+.member-photo{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #d9dde3;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.member-role{
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.member-name{
+  margin: 8px 0 8px;
+  font-size: 28px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.member-desc{
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+.members-page{
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+
+.members-title{
+  margin: 0;
+  font-size: 48px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.members-intro{
+  margin-top: 12px;
+  margin-bottom: 42px;
+  color: rgba(255,255,255,0.78);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.member-group{
+  margin-top: 48px;
+}
+
+.group-title{
+  margin: 0;
+  font-size: 34px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.group-desc{
+  margin-top: 10px;
+  margin-bottom: 24px;
+  color: rgba(255,255,255,0.72);
+  font-size: 16px;
+}
+
+.members-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.leadership-grid{
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+}
+
+.member-card{
+  background: rgba(255,255,255,0.96);
+  border-radius: 24px;
+  padding: 28px 22px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.14);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.member-card:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.18);
+}
+
+.member-photo{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #d9dde3;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.member-role{
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.member-name{
+  margin: 8px 0 8px;
+  font-size: 28px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.member-desc{
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+@media (max-width: 900px){
+  .leadership-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px){
+  .members-title{
+    font-size: 36px;
+  }
+
+  .group-title{
+    font-size: 28px;
+  }
+
+  .member-card{
+    padding: 24px 18px;
+  }
+
+  .member-name{
+    font-size: 24px;
+  }
+}
+
+.members-page{
+  padding-top: 28px;
+  padding-bottom: 70px;
+}
+
+.members-title{
+  margin: 0;
+  font-size: 46px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.members-intro{
+  margin-top: 12px;
+  margin-bottom: 44px;
+  color: rgba(255,255,255,0.76);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.member-group{
+  margin-top: 54px;
+}
+
+.group-title{
+  margin: 0;
+  font-size: 34px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.group-desc{
+  margin-top: 10px;
+  margin-bottom: 26px;
+  color: rgba(255,255,255,0.72);
+  font-size: 16px;
+}
+
+.members-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 26px;
+}
+
+.leadership-grid{
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  align-items: end;
+}
+
+.member-card{
+  background: rgba(255,255,255,0.95);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 28px;
+  padding: 20px 20px 24px;
+  text-align: center;
+  box-shadow: 0 14px 36px rgba(0,0,0,0.16);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+}
+
+.member-card:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 20px 42px rgba(0,0,0,0.22);
+}
+
+.member-photo{
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #e5e7eb, #cfd8e3);
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.member-role{
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.member-name{
+  margin: 8px 0 8px;
+  font-size: 30px;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.15;
+}
+
+.member-desc{
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #4b5563;
+}
+
+/* 회장단 양옆 카드 */
+
+/* 모바일 */
+
+@media (max-width: 640px){
+  .members-title{
+    font-size: 36px;
+  }
+
+  .group-title{
+    font-size: 28px;
+  }
+
+  .member-card{
+    padding: 18px 18px 22px;
+    border-radius: 24px;
+  }
+
+  .member-name{
+    font-size: 26px;
+  }
+}
+.leadership-grid{
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 900px;
+  margin: 0 auto;
+}
