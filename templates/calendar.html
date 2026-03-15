@@ -3,7 +3,7 @@
 
 <section class="page-head">
   <h1>캘린더</h1>
-  <p class="sub">NAAGA 일정 — 월별로 확인하세요.</p>
+  <p class="sub">NAAGA 일정 — 월별로 한눈에 확인하세요.</p>
 </section>
 
 <section class="card calendar-wrap">
@@ -14,25 +14,19 @@
   </div>
 
   <div class="cal-grid cal-week">
-    <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+    <div>Sun</div>
+    <div>Mon</div>
+    <div>Tue</div>
+    <div>Wed</div>
+    <div>Thu</div>
+    <div>Fri</div>
+    <div>Sat</div>
   </div>
 
   <div class="cal-grid" id="calendarGrid"></div>
-
-  <div class="cal-legend muted">
-    • 날짜를 클릭하면 그날 일정이 아래에 표시돼요.
-  </div>
-
-  <div class="cal-events" id="eventBox">
-    <div class="callout">
-      <div class="callout-title">선택한 날짜</div>
-      <div class="callout-body muted" id="eventText">날짜를 클릭해보세요</div>
-    </div>
-  </div>
 </section>
 
 <script>
-  // ✅ 일정은 static/events.json에서 불러옵니다
   let EVENTS = {};
 
   let current = new Date();
@@ -40,60 +34,71 @@
 
   const monthTitle = document.getElementById("monthTitle");
   const grid = document.getElementById("calendarGrid");
-  const eventText = document.getElementById("eventText");
 
-  function pad(n){ return String(n).padStart(2,"0"); }
+  function pad(n) {
+    return String(n).padStart(2, "0");
+  }
 
-  function render(){
+  function render() {
     const y = current.getFullYear();
-    const m = current.getMonth(); // 0~11
-    monthTitle.textContent = `${y}.${pad(m+1)}`;
+    const m = current.getMonth();
+    monthTitle.textContent = `${y}.${pad(m + 1)}`;
 
     grid.innerHTML = "";
 
     const firstDay = new Date(y, m, 1);
-    const startWeekday = firstDay.getDay(); // 0=Sun
-    const lastDate = new Date(y, m+1, 0).getDate();
+    const startWeekday = firstDay.getDay();
+    const lastDate = new Date(y, m + 1, 0).getDate();
 
-    // 앞쪽 빈칸
-    for(let i=0; i<startWeekday; i++){
+    for (let i = 0; i < startWeekday; i++) {
       const empty = document.createElement("div");
       empty.className = "cal-cell cal-empty";
       grid.appendChild(empty);
     }
 
-    // 날짜 채우기
-    for(let d=1; d<=lastDate; d++){
-      const cell = document.createElement("button");
-      cell.type = "button";
+    for (let d = 1; d <= lastDate; d++) {
+      const key = `${y}-${pad(m + 1)}-${pad(d)}`;
+      const cell = document.createElement("div");
       cell.className = "cal-cell";
-      const key = `${y}-${pad(m+1)}-${pad(d)}`;
 
-      cell.innerHTML = `<span class="cal-date">${d}</span>`;
-// ✅ 오늘 날짜면 강조
-const today = new Date();
-if (
-  y === today.getFullYear() &&
-  m === today.getMonth() &&
-  d === today.getDate()
-) {
-  cell.classList.add("cal-today");
-}
-
-
-      if (EVENTS[key]){
-        cell.classList.add("cal-has");
-        cell.innerHTML += `<span class="cal-dot"></span>`;
+      const today = new Date();
+      if (
+        y === today.getFullYear() &&
+        m === today.getMonth() &&
+        d === today.getDate()
+      ) {
+        cell.classList.add("cal-today");
       }
 
-      cell.addEventListener("click", () => {
-        const list = EVENTS[key];
-        if(!list){
-          eventText.textContent = `${key} 일정 없음`;
-          return;
+      const dateEl = document.createElement("div");
+      dateEl.className = "cal-date";
+      dateEl.textContent = d;
+      cell.appendChild(dateEl);
+
+      if (EVENTS[key]) {
+        cell.classList.add("cal-has");
+
+        const eventsWrap = document.createElement("div");
+        eventsWrap.className = "cal-events-inline";
+
+        EVENTS[key].forEach((item, index) => {
+          if (index < 2) {
+            const eventEl = document.createElement("div");
+            eventEl.className = "cal-event-item";
+            eventEl.textContent = item;
+            eventsWrap.appendChild(eventEl);
+          }
+        });
+
+        if (EVENTS[key].length > 2) {
+          const moreEl = document.createElement("div");
+          moreEl.className = "cal-event-more";
+          moreEl.textContent = `+${EVENTS[key].length - 2} more`;
+          eventsWrap.appendChild(moreEl);
         }
-        eventText.innerHTML = `<b>${key}</b><br>` + list.map(x => `• ${x}`).join("<br>");
-      });
+
+        cell.appendChild(eventsWrap);
+      }
 
       grid.appendChild(cell);
     }
@@ -109,11 +114,16 @@ if (
     render();
   });
 
-  // ✅ JSON 불러온 뒤 render
   fetch("/static/events.json")
-    .then(res => res.json())
-    .then(data => { EVENTS = data || {}; render(); })
-    .catch(() => { EVENTS = {}; render(); });
+    .then((res) => res.json())
+    .then((data) => {
+      EVENTS = data || {};
+      render();
+    })
+    .catch(() => {
+      EVENTS = {};
+      render();
+    });
 </script>
 
 {% endblock %}
