@@ -1058,3 +1058,99 @@ font-weight:600;
   color:#93c5fd;
   letter-spacing:0.02em;
 }
+
+/* mobile optimization */
+@media (max-width: 768px){
+
+  .container{
+    width: 92%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .page-head{
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+
+  .page-head h1{
+    font-size: 34px;
+    line-height: 1.2;
+  }
+
+  .sub{
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .card{
+    padding: 18px 14px;
+    border-radius: 20px;
+  }
+
+  .calendar-wrap{
+    padding: 18px 12px 16px;
+    border-radius: 22px;
+  }
+
+  .cal-top{
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .cal-title{
+    min-width: 96px;
+    font-size: 20px;
+  }
+
+  .cal-btn{
+    width: 40px;
+    height: 36px;
+    font-size: 16px;
+    border-radius: 12px;
+  }
+
+  .cal-grid{
+    gap: 6px;
+  }
+
+  .cal-week{
+    margin-bottom: 8px;
+  }
+
+  .cal-week div{
+    font-size: 11px;
+    padding: 4px 0;
+  }
+
+  .cal-cell{
+    min-height: 72px;
+    padding: 6px 5px;
+    border-radius: 12px;
+    gap: 4px;
+  }
+
+  .cal-date{
+    font-size: 12px;
+    gap: 4px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .cal-today-tag{
+    font-size: 8px;
+    padding: 1px 5px;
+    border-radius: 999px;
+  }
+
+  .cal-event-item{
+    font-size: 9px;
+    line-height: 1.2;
+    padding: 3px 5px;
+    border-radius: 8px;
+  }
+
+  .cal-event-more{
+    font-size: 8px;
+  }
+}
