@@ -61,18 +61,22 @@
       const cell = document.createElement("div");
       cell.className = "cal-cell";
 
+      const dateEl = document.createElement("div");
+      dateEl.className = "cal-date";
+      dateEl.textContent = d;
+
       const today = new Date();
       if (
         y === today.getFullYear() &&
         m === today.getMonth() &&
         d === today.getDate()
       ) {
-        cell.classList.add("cal-today");
+        const todayTag = document.createElement("span");
+        todayTag.className = "cal-today-tag";
+        todayTag.textContent = "today";
+        dateEl.appendChild(todayTag);
       }
 
-      const dateEl = document.createElement("div");
-      dateEl.className = "cal-date";
-      dateEl.textContent = d;
       cell.appendChild(dateEl);
 
       if (EVENTS[key]) {
