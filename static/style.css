@@ -1154,3 +1154,29 @@ font-weight:600;
     font-size: 8px;
   }
 }
+
+@media (max-width: 768px){
+  .members-grid,
+  .leadership-grid{
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .member-card{
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .member-photo{
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+  }
+
+  .member-name{
+    font-size: 22px;
+  }
+
+  .member-desc{
+    font-size: 13px;
+  }
+}
