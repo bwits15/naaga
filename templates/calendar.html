@@ -24,6 +24,13 @@
   </div>
 
   <div class="cal-grid" id="calendarGrid"></div>
+
+  <div class="calendar-detail" id="calendarDetail">
+    <div class="detail-title">날짜를 선택하세요</div>
+    <div class="detail-events">
+      <div class="detail-empty">날짜를 누르면 일정이 여기에 보여요.</div>
+    </div>
+  </div>
 </section>
 
 <script>
@@ -34,9 +41,29 @@
 
   const monthTitle = document.getElementById("monthTitle");
   const grid = document.getElementById("calendarGrid");
+  const detailBox = document.getElementById("calendarDetail");
+  const detailTitle = detailBox.querySelector(".detail-title");
+  const detailEvents = detailBox.querySelector(".detail-events");
 
   function pad(n) {
     return String(n).padStart(2, "0");
+  }
+
+  function renderDetail(key, list) {
+    detailTitle.textContent = `${key} 일정`;
+    detailEvents.innerHTML = "";
+
+    if (!list || list.length === 0) {
+      detailEvents.innerHTML = "<div class='detail-empty'>일정 없음</div>";
+      return;
+    }
+
+    list.forEach((item) => {
+      const row = document.createElement("div");
+      row.className = "detail-item";
+      row.textContent = item;
+      detailEvents.appendChild(row);
+    });
   }
 
   function render() {
@@ -89,7 +116,13 @@
           if (index < 2) {
             const eventEl = document.createElement("div");
             eventEl.className = "cal-event-item";
-            eventEl.textContent = item;
+
+            const shortLabel =
+              window.innerWidth <= 768
+                ? (item.length > 6 ? item.slice(0, 6) + "…" : item)
+                : item;
+
+            eventEl.textContent = shortLabel;
             eventsWrap.appendChild(eventEl);
           }
         });
@@ -97,12 +130,16 @@
         if (EVENTS[key].length > 2) {
           const moreEl = document.createElement("div");
           moreEl.className = "cal-event-more";
-          moreEl.textContent = `+${EVENTS[key].length - 2} more`;
+          moreEl.textContent = `+${EVENTS[key].length - 2}`;
           eventsWrap.appendChild(moreEl);
         }
 
         cell.appendChild(eventsWrap);
       }
+
+      cell.addEventListener("click", () => {
+        renderDetail(key, EVENTS[key] || []);
+      });
 
       grid.appendChild(cell);
     }
