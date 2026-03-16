@@ -1312,3 +1312,157 @@ font-weight:600;
     font-size: 20px;
   }
 }
+
+/* ===== Members mobile card upgrade ===== */
+
+.member-card{
+  background: rgba(255,255,255,0.94);
+  border-radius: 24px;
+  padding: 14px 14px 16px;
+  text-align: center;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.14);
+  overflow: hidden;
+}
+
+.member-photo{
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 18px;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e5e7eb, #cfd8e3);
+  color: #64748b;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.member-role{
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.member-name{
+  margin: 6px 0 6px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.15;
+}
+
+.member-desc{
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #4b5563;
+}
+
+/* 데스크탑/태블릿 */
+.members-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+.leadership-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 22px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+/* 모바일 */
+@media (max-width: 768px){
+  .members-page{
+    padding-top: 16px;
+    padding-bottom: 36px;
+  }
+
+  .members-title{
+    font-size: 34px;
+    margin-bottom: 6px;
+  }
+
+  .members-intro{
+    font-size: 15px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  .member-group{
+    margin-top: 30px;
+  }
+
+  .group-title{
+    font-size: 28px;
+  }
+
+  .group-desc{
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .members-grid,
+  .leadership-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 100%;
+  }
+
+  .member-card{
+    border-radius: 20px;
+    padding: 10px 10px 14px;
+  }
+
+  .member-photo{
+    aspect-ratio: 3 / 4;
+    border-radius: 14px;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  .member-role{
+    font-size: 12px;
+  }
+
+  .member-name{
+    font-size: 16px;
+    margin: 4px 0 4px;
+  }
+
+  .member-desc{
+    font-size: 11px;
+    line-height: 1.35;
+    word-break: keep-all;
+  }
+}
+
+/* 아주 작은 화면 */
+@media (max-width: 430px){
+  .members-grid,
+  .leadership-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .member-card{
+    padding: 9px 9px 12px;
+  }
+
+  .member-photo{
+    border-radius: 12px;
+  }
+
+  .member-name{
+    font-size: 15px;
+  }
+
+  .member-desc{
+    font-size: 10px;
+  }
+}
