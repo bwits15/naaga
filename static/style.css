@@ -1267,3 +1267,48 @@ font-weight:600;
     padding: 2px 5px;
   }
 }
+
+@media (max-width: 768px){
+  .container{
+    width: 96%;
+    max-width: 96%;
+    margin: 0 auto;
+  }
+
+  .calendar-wrap{
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 14px 8px 16px;
+    border-radius: 20px;
+  }
+
+  .card.calendar-wrap{
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .cal-grid{
+    gap: 5px;
+  }
+
+  .cal-cell{
+    min-height: 74px;
+    padding: 8px 5px 6px;
+  }
+}
+
+@media (max-width: 768px){
+  .nav-inner{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .menu a{
+    font-size: 14px;
+  }
+
+  .brand{
+    font-size: 20px;
+  }
+}
